@@ -9,7 +9,7 @@ fun main() {
     println("D: tbc")
 
     val option = input.next()
-        .ifEmpty { "e" }
+        .ifEmpty { "E" }
         .take(1)
         .uppercase()
 
@@ -21,6 +21,9 @@ fun main() {
     }
     else if (option == "C"){
         RemoveStudent()
+    }
+    else if (option == "E"){
+        println("text field empty")
     }
 
 

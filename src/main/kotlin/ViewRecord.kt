@@ -6,5 +6,14 @@ fun ViewRecord() {
     val StudId = input.next()
         .ifEmpty { "enter a value" }
         .toString()
-    student.forEach {  }
+
+
+    println(getStudInfo(StudId))
+    //todo format text to be more clear
+    main()
+
+}
+
+fun getStudInfo(studentId: String): List<StudentTemplate>{
+    return student.filter { it.studentId == studentId }
 }

@@ -16,11 +16,12 @@ fun AddStudent() {
     val modules = input.next()*/
 
     student += StudentTemplate(
-        studentId = id,
-        studentName = name,
-        studentCourse = course,
+        id,
+        name,
+        course
     )
 
+    println("Student added Successfully: ")
     println(student)
    /* addstu(id)
         .forEach { Files.write(file, student) }*/
