@@ -14,16 +14,19 @@ fun main() {
         .uppercase()
 
     if (option == "A"){
-        ViewRecord()
+        viewRecord()
     }
     else if(option == "B"){
-        AddStudent()
+        addStudent()
     }
     else if (option == "C"){
-        RemoveStudent()
+        removeStudent()
     }
     else if (option == "E"){
         println("text field empty")
+    }
+    else{// fake testing info
+        init()
     }
 
 
