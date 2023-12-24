@@ -1,12 +1,19 @@
 
-import java.nio.file.Paths
+import java.util.Random
 import java.util.Scanner
-val file = Paths.get("src/main/kotlin/Students.txt")
+//val file = Paths.get("src/main/kotlin/Students.txt")
 val student = arrayListOf<StudentTemplate>()
 fun addStudent() {
     val input = Scanner(System.`in`)
-    println("Type in Student id")
-    val id = input.nextLine()
+    val rand = Random()
+    var id = ""
+    var idCheck = false
+    while (!idCheck){
+        id = rand.nextInt(10000)
+            .toString()
+        idCheck = !student.equals(id)
+    }
+    println("Student ID assigned: $id")
     println("type in Student name")
     val name = input.nextLine()
         .lowercase()

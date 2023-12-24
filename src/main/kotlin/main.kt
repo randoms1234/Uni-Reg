@@ -13,20 +13,22 @@ fun main() {
         .take(1)
         .uppercase()
 
-    if (option == "A"){
-        viewRecord()
-    }
-    else if(option == "B"){
-        addStudent()
-    }
-    else if (option == "C"){
-        removeStudent()
-    }
-    else if (option == "E"){
-        println("text field empty")
-    }
-    else{// fake testing info
-        init()
+    when (option) {
+        "A" -> {
+            viewRecord()
+        }
+        "B" -> {
+            addStudent()
+        }
+        "C" -> {
+            removeStudent()
+        }
+        "E" -> {
+            println("text field empty")
+        }
+        else -> {// fake testing info
+            init()
+        }
     }
 
 

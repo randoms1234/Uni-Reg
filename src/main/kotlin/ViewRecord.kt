@@ -12,21 +12,23 @@ fun viewRecord() {
         .take(1)
         .uppercase()
 
-    if(opt == "A" ){
-        byStudId()
-    }
-    else if(opt == "B"){
-        byStudName()
-    }
-    else if(opt == "C"){
-        byStudCourse()
-    }
-    else if(opt == "D"){
-        byStudModule()
-    }
-    else{
-        println("Please enter a single character")
-        viewRecord()
+    when (opt) {
+        "A" -> {
+            byStudId()
+        }
+        "B" -> {
+            byStudName()
+        }
+        "C" -> {
+            byStudCourse()
+        }
+        "D" -> {
+            byStudModule()
+        }
+        else -> {
+            println("Please enter a single character")
+            viewRecord()
+        }
     }
     //todo format text to be more clear
 
