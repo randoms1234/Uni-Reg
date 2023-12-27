@@ -7,8 +7,11 @@ fun viewRecord() {
     println("B: Student Name")
     println("C: Course")
     println("D: Module")
-    val opt = input.next()
-        .ifEmpty { "E" }
+    val opt = input.nextLine()
+        .ifEmpty { println()
+            println()
+            println("ERROR:Please enter an option")
+            "E" }
         .take(1)
         .uppercase()
 
@@ -24,6 +27,9 @@ fun viewRecord() {
         }
         "D" -> {
             byStudModule()
+        }
+        "E" ->{
+            viewRecord()
         }
         else -> {
             println("Please enter a single character")
@@ -72,6 +78,16 @@ fun byStudCourse(){
 }
 
 fun byStudModule(){
+    println("Please type in the module: ")
+    val sModule = input.nextLine()
+        .ifEmpty { byStudModule() }
+        .toString()
+        .lowercase()
+
+    val studModule = sModule.split(",")
+        .map { it.trim() }
+    println(getStudModules(studModule))
+    home()
 
 }
 
@@ -99,3 +115,7 @@ fun getStudCourse(studentCourse: String): List<StudentTemplate>{
     return student.filter { it.studentCourse.contains(studentCourse) }
 }
 
+fun getStudModules(studentModule: List<String>): List<StudentTemplate>{
+    return student.filter { it.studentModules == studentModule}
+    //TODO need to make it work
+}

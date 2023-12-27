@@ -20,13 +20,20 @@ fun addStudent() {
     println("type in Course name")
     val course = input.nextLine()
         .lowercase()
-    /*println("type in modules")
-    val modules = input.next()*/
+    println("type in modules")
+    println("Seperate each module with a comma")
+    val inmodules = input.nextLine()
+        .toString()
+        .lowercase()
+
+    val modules = inmodules.split(",")
+        .map { it.trim() }
 
     student += StudentTemplate(
         id,
         name,
-        course
+        course,
+        modules
     )
 
     println("Student added Successfully: ")
