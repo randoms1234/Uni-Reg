@@ -79,13 +79,10 @@ fun byStudCourse(){
 
 fun byStudModule(){
     println("Please type in the module: ")
-    val sModule = input.nextLine()
+    val studModule = input.nextLine()
         .ifEmpty { byStudModule() }
         .toString()
         .lowercase()
-
-    val studModule = sModule.split(",")
-        .map { it.trim() }
     println(getStudModules(studModule))
     home()
 
@@ -115,7 +112,7 @@ fun getStudCourse(studentCourse: String): List<StudentTemplate>{
     return student.filter { it.studentCourse.contains(studentCourse) }
 }
 
-fun getStudModules(studentModule: List<String>): List<StudentTemplate>{
-    return student.filter { it.studentModules == studentModule}
-    //TODO need to make it work
+fun getStudModules(studentModule: String): List<StudentTemplate>{
+    return student.filter { it.studentModules.contains(studentModule) }
 }
+

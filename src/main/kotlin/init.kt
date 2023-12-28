@@ -3,7 +3,7 @@ fun init(){
         studentId = "123",
         studentName = "connor richardson",
         studentCourse = "comp cci",
-        studentModules = listOf("IFP","OOP")
+        studentModules = listOf("ifp","oop")
     )
     student += StudentTemplate(
         studentId = "456",
