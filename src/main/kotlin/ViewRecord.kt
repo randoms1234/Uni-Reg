@@ -1,5 +1,6 @@
 import java.util.Scanner
 val input = Scanner(System.`in`)
+var sort = 0
 fun viewRecord() {
     println("Enter an option: ")
     println("Find student by: ")
@@ -89,16 +90,62 @@ fun byStudName(){
 }
 
 fun byStudCourse(){
+    val temp = ""
     println("Please enter the full Course Name: ")
     var studCourse = input.nextLine()
         .ifEmpty { byStudCourse() }
         .toString()
         .lowercase()
-    studCourse = getStudCourse(studCourse)
+    println("Filter by: ")
+    println("A: Default")
+    println("B: Name")
+    println("C: Module")
+    var usrInput = input.nextLine()
+        .ifEmpty { "A" }
         .toString()
-    studCourse.split("),")
-        .map { it.trim() }
-        .forEach { println(it) }
+        .uppercase()
+    when (usrInput){
+        "A" -> {
+            studCourse = getStudCourse(studCourse, usrInput, temp)
+            .toString()
+             studCourse.split("),")
+                .map { it.trim() }
+                .forEach { println(it) }
+
+        }
+        "B" ->{
+            sort = 1
+            println("Enter Name to filter by: ")
+            usrInput = input.nextLine()
+                .ifEmpty { println("Input Empty")
+                ""}
+                .toString()
+                .lowercase()
+            studCourse = getStudCourse(studCourse,usrInput, temp)
+                .toString()
+            studCourse.split("),")
+                .map { it.trim() }
+                .forEach { println(it) }
+            sort = 0
+        }
+        "C" -> {
+            sort = 2
+            println("Enter the name of the module to filter by: ")
+               val studentModule = input.nextLine()
+                .ifEmpty {
+                    println("Input Empty")
+                    ""
+                }
+                .toString()
+                .lowercase()
+            studCourse = getStudCourse(studCourse,usrInput, studentModule)
+                .toString()
+            studCourse.split("),")
+                .map { it.trim() }
+                .forEach { println(it) }
+            sort = 0
+        }
+    }
     home()
 
 }
@@ -135,8 +182,21 @@ fun getStudName(studentName: String): List<StudentTemplate>{
     return student.filter { it.studentName.contains(studentName) }
 }
 
-fun getStudCourse(studentCourse: String): List<StudentTemplate>{
-    return student.filter { it.studentCourse.contains(studentCourse) }
+fun getStudCourse(studentCourse: String, studentName: String, studentModule: String): List<StudentTemplate>{
+    return when (sort) {
+        1 -> {
+            student.filter { it.studentCourse.contains(studentCourse) }
+                .filter { it.studentName.contains(studentName) }
+        }
+        2 -> {
+            student.filter { it.studentCourse.contains(studentCourse) }
+                .filter { it.studentModules.contains(studentModule) }
+        }
+        else -> {
+            student.filter { it.studentCourse.contains(studentCourse)}
+        }
+    }
+
 }
 
 fun getStudModules(studentModule: String): List<StudentTemplate>{
