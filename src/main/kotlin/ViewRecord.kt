@@ -36,7 +36,6 @@ fun viewRecord() {
             viewRecord()
         }
     }
-    //todo format text to be more clear
 
 }
 
@@ -56,11 +55,34 @@ fun byStudId(){
 
 fun byStudName(){
     println("Please enter the students full name: ")
-    val studName = input.nextLine()
+    var studName = input.nextLine()
         .ifEmpty { byStudName() }
         .toString()
         .lowercase()
-    println(getStudName(studName))
+     studName = getStudName(studName)
+        .toString()
+    val st = studName.split("),")
+        .map { it.trim() }
+    println("Sort name by: ")
+    println("Default")
+    println("A: Ascending")
+    println("B: Descending")
+    val input = input.nextLine()
+        .uppercase()
+    when (input) {
+        "A" -> {
+            st.sorted()
+                .forEach { println(it) }
+        }
+        "B" -> {
+            st.sortedDescending()
+                .forEach { println(it) }
+        }
+        else -> {
+            st.forEach { println(it) }
+        }
+    }
+
     home()
 
 
@@ -68,11 +90,15 @@ fun byStudName(){
 
 fun byStudCourse(){
     println("Please enter the full Course Name: ")
-    val studCourse = input.nextLine()
+    var studCourse = input.nextLine()
         .ifEmpty { byStudCourse() }
         .toString()
         .lowercase()
-    println(getStudCourse(studCourse))
+    studCourse = getStudCourse(studCourse)
+        .toString()
+    studCourse.split("),")
+        .map { it.trim() }
+        .forEach { println(it) }
     home()
 
 }
@@ -87,6 +113,7 @@ fun byStudModule(){
     home()
 
 }
+
 
 fun home(){
     println("Find another student?(Default: No)")
@@ -105,7 +132,7 @@ fun getStudID(studentId: String): List<StudentTemplate>{
 }
 
 fun getStudName(studentName: String): List<StudentTemplate>{
-    return student.filter { it.studentName == studentName }
+    return student.filter { it.studentName.contains(studentName) }
 }
 
 fun getStudCourse(studentCourse: String): List<StudentTemplate>{

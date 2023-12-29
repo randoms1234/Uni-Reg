@@ -25,6 +25,8 @@ fun addStudent() {
     val inmodules = input.nextLine()
         .toString()
         .lowercase()
+    println("Enter Students marks")
+    val marks = input.nextInt()
 
     val modules = inmodules.split(",")
         .map { it.trim() }
@@ -33,7 +35,8 @@ fun addStudent() {
         id,
         name,
         course,
-        modules
+        modules,
+        marks
     )
 
     println("Student added Successfully: ")
