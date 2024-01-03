@@ -1,4 +1,4 @@
-var sort = 0
+//var sort = 0
 fun viewRecord() {
     println("Enter an option: ")
     println("Find student by: ")
@@ -104,7 +104,7 @@ fun byStudCourse(){
         .uppercase()
     when (usrInput){
         "A" -> {
-            studCourse = getStudCourse(studCourse, usrInput, temp)
+            studCourse = getStudCourse(studCourse, usrInput, temp, 0)
                 .toString()
              studCourse.split("),")
                 .map { it.trim() }
@@ -112,22 +112,21 @@ fun byStudCourse(){
 
         }
         "B" ->{
-            sort = 1
+            //sort = 1
             println("Enter Name to filter by: ")
             usrInput = input.nextLine()
                 .ifEmpty { println("Input Empty")
                 ""}
                 .toString()
                 .lowercase()
-            studCourse = getStudCourse(studCourse,usrInput, temp)
+            studCourse = getStudCourse(studCourse,usrInput, temp, 1)
                 .toString()
             studCourse.split("),")
                 .map { it.trim() }
                 .forEach { println(it) }
-            sort = 0
         }
         "C" -> {
-            sort = 2
+            //sort = 2
             println("Enter the name of the module to filter by: ")
                val studentModule = input.nextLine()
                 .ifEmpty {
@@ -136,12 +135,11 @@ fun byStudCourse(){
                 }
                 .toString()
                 .lowercase()
-            studCourse = getStudCourse(studCourse,usrInput, studentModule)
+            studCourse = getStudCourse(studCourse,usrInput, studentModule, 2)
                 .toString()
             studCourse.split("),")
                 .map { it.trim() }
                 .forEach { println(it) }
-            sort = 0
         }
     }
     home()
@@ -185,7 +183,7 @@ fun getStudName(studentName: String): List<StudentTemplate>{
     return student.filter { it.studentName.contains(studentName) }
 }
 
-fun getStudCourse(studentCourse: String, studentName: String, studentModule: String): List<StudentTemplate>{
+fun getStudCourse(studentCourse: String, studentName: String, studentModule: String, sort: Int): List<StudentTemplate>{
     return when (sort) {
         1 -> {
             student.filter { it.studentCourse.contains(studentCourse) }
