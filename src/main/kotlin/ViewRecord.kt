@@ -1,5 +1,3 @@
-import java.util.Scanner
-val input = Scanner(System.`in`)
 var sort = 0
 fun viewRecord() {
     println("Enter an option: ")
@@ -55,7 +53,7 @@ fun byStudId(){
 
 
 fun byStudName(){
-    println("Please enter the students full name: ")
+    println("Please enter part of a name for multiple entries or a full name for one entry ")
     var studName = input.nextLine()
         .ifEmpty { byStudName() }
         .toString()
@@ -107,7 +105,7 @@ fun byStudCourse(){
     when (usrInput){
         "A" -> {
             studCourse = getStudCourse(studCourse, usrInput, temp)
-            .toString()
+                .toString()
              studCourse.split("),")
                 .map { it.trim() }
                 .forEach { println(it) }
@@ -156,7 +154,12 @@ fun byStudModule(){
         .ifEmpty { byStudModule() }
         .toString()
         .lowercase()
-    println(getStudModules(studModule))
+    getStudModules(studModule)
+        .toString()
+        .split("),")
+        .map { it.trim() }
+        .forEach { println(it) }
+
     home()
 
 }

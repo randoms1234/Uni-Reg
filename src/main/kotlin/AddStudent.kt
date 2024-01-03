@@ -11,7 +11,9 @@ fun addStudent() {
     while (!idCheck){
         id = rand.nextInt(10000)
             .toString()
-        idCheck = !student.equals(id)
+        if (getStudID(id).toString()== "[]"){
+            idCheck = true
+        }
     }
     println("Student ID assigned: $id")
     println("type in Student name")
@@ -21,16 +23,13 @@ fun addStudent() {
     val course = input.nextLine()
         .lowercase()
     println("type in modules")
-    println("Seperate each module with a comma")
-    val inmodules = input.nextLine()
-        .toString()
+    println("Separate each module with a comma")
+    val modules = input.nextLine()
         .lowercase()
+        .split(",")
+        .map { it.trim() }
     println("Enter Students marks")
     val marks = input.nextInt()
-
-    val modules = inmodules.split(",")
-        .map { it.trim() }
-
     student += StudentTemplate(
         id,
         name,
@@ -41,12 +40,6 @@ fun addStudent() {
 
     println("Student added Successfully: ")
     println(student.filter { it.studentId.contains(id) })
-   /* addstu(id)
-        .forEach { Files.write(file, student) }*/
     main()
 
 }
-/*fun addstu(studentId: String): List<StudentTemplate>{
-    return student.filter { it.studentId == studentId }
-
-}*/

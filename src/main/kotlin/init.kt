@@ -14,7 +14,7 @@ fun init(){
         studentMarks = 60
     )
     student += StudentTemplate(
-        studentId="456",
+        studentId="457",
         studentName="emma hernandez",
         studentCourse="software engineering",
         studentModules= listOf("algorithms", "data Structures"),
@@ -35,8 +35,8 @@ fun init(){
         studentMarks=92
     )
     student += StudentTemplate(
-        studentId="789",
-        studentName="chloe Miller",
+        studentId="799",
+        studentName="chloe miller",
         studentCourse="game Design",
         studentModules= listOf("3d modeling", "game engine programming"),
         studentMarks=85)
